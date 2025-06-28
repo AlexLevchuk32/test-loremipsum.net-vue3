@@ -2,7 +2,7 @@
 	import { RouterLink, useRoute } from 'vue-router';
 	import { watch } from 'vue';
 	import { storeToRefs } from 'pinia';
-	import { useOverlayStore } from '../stores/Overlay';
+	import { useOverlayStore } from '@/stores/Overlay';
 
 	const route = useRoute();
 	const overlayStore = useOverlayStore();
