@@ -1,9 +1,15 @@
 <script setup lang="ts"></script>
 
 <template>
-	<h1 class="about__title page-title">About</h1>
+	<main class="main">
+		<div class="about">
+			<div class="container">
+				<div class="about__inner">
+					<h1 class="about__title page-title">About</h1>
+				</div>
+			</div>
+		</div>
+	</main>
 </template>
 
-<style lang="scss">
-	@import '../assets/scss/main.scss';
-</style>
+<style lang="scss" scoped></style>
