@@ -11,6 +11,6 @@
 	</div>
 </template>
 
-<style scoped>
-	@import './assets/scss/main.scss';
+<style lang="scss" scoped>
+	@use './assets/scss/main.scss';
 </style>

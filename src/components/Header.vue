@@ -1,5 +1,16 @@
 <script setup lang="ts">
-	import { RouterLink } from 'vue-router';
+	import { RouterLink, useRoute } from 'vue-router';
+	import { watch } from 'vue';
+	import { storeToRefs } from 'pinia';
+	import { useOverlayStore } from '../stores/Overlay';
+
+	const route = useRoute();
+	const overlayStore = useOverlayStore();
+	const { isMenuOpen } = storeToRefs(overlayStore);
+
+	watch(isMenuOpen, (newValue) => {
+		document.body.classList.toggle('lock', newValue);
+	});
 </script>
 
 <template>
@@ -13,15 +24,17 @@
 					</a>
 				</div>
 
-				<nav class="header__menu">
-					<RouterLink class="header__menu-item" to="/">Home</RouterLink>
-					<RouterLink class="header__menu-item" to="/business">Business</RouterLink>
-					<RouterLink class="header__menu-item" to="/about">About</RouterLink>
-					<RouterLink class="header__menu-item" to="/prices">Prices</RouterLink>
-					<RouterLink class="header__menu-item" to="/order">Order</RouterLink>
+				<nav :class="['header__menu', { open: isMenuOpen }]">
+					<RouterLink class="header__menu-item" active-class="active" to="/" v-if="route.name !== 'home'" @click="isMenuOpen = false">
+						Home
+					</RouterLink>
+					<RouterLink class="header__menu-item" active-class="active" to="/business" @click="isMenuOpen = false">Business</RouterLink>
+					<RouterLink class="header__menu-item" active-class="active" to="/about" @click="isMenuOpen = false">About</RouterLink>
+					<RouterLink class="header__menu-item" active-class="active" to="/prices" @click="isMenuOpen = false">Prices</RouterLink>
+					<RouterLink class="header__menu-item" active-class="active" to="/order" @click="isMenuOpen = false">Order</RouterLink>
 				</nav>
 
-				<button class="header__burger-btn">
+				<button :class="['header__burger-btn', { active: isMenuOpen }]" @click="isMenuOpen = !isMenuOpen">
 					<span class="header__burger-line"></span>
 					<span class="header__burger-line"></span>
 					<span class="header__burger-line"></span>
@@ -31,16 +44,19 @@
 	</header>
 </template>
 
-<style lang="scss">
-	@import '../assets/scss/main.scss';
+<style lang="scss" scoped>
+	@use '../assets/scss/base/common' as *;
+	@use '../assets/scss/base/mixins' as *;
+	@use '../assets/scss/base/variables' as *;
 
 	.header {
 		position: fixed;
 		left: 0;
 		top: 0;
 		right: 0;
+		width: 100vw;
 		height: 100px;
-		background-color: $color-bg-1;
+		background-color: rgba(16, 16, 29, 0.9);
 		z-index: 20;
 		// .header__container
 		&__container {
@@ -66,7 +82,7 @@
 		}
 		// .header__logo--blue
 		&__logo--blue {
-			color: $color-blue-2;
+			color: $color-main-light-blue;
 		}
 		// .header__menu
 		&__menu {
@@ -82,7 +98,7 @@
 			position: relative;
 			transition: 0.3s ease-in-out;
 			&:hover {
-				color: $color-blue-2;
+				color: $color-main-light-blue;
 			}
 			&::before {
 				content: '';
@@ -91,7 +107,7 @@
 				bottom: -8px;
 				width: 110%;
 				height: 3px;
-				background-color: $color-blue-2;
+				background-color: $color-main-light-blue;
 				transform: translateX(-5%);
 				opacity: 0;
 				// width: 0%;
@@ -108,6 +124,103 @@
 		}
 		// .header__burger-line
 		&__burger-line {
+		}
+	}
+
+	//==========================================================================================================================================================
+	// РђРґР°РїС‚РёРІ
+	@media only screen and (max-width: 1199.98px) {
+		.header {
+			height: 90px;
+			&__logo {
+				font-size: rem(28);
+			}
+		}
+	}
+
+	@media only screen and (max-width: 991.98px) {
+		.header {
+			height: 80px;
+			&__logo {
+				font-size: rem(26);
+			}
+			&__menu {
+				column-gap: 30px;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 767.98px) {
+		.header {
+			height: 70px;
+			&__logo {
+				font-size: rem(24);
+			}
+			&__menu {
+				position: absolute;
+				top: 70px;
+				right: 0;
+				flex-direction: column;
+				row-gap: 15px;
+				width: 100%;
+				max-width: 260px;
+				height: 100vh;
+				padding: 15px;
+				background-color: $color-main-bg-dark;
+				transform: translateX(100%);
+				opacity: 0;
+				visibility: hidden;
+				transition: all 0.3s ease-in-out;
+				.header__menu-item {
+					padding: 10px;
+					font-size: rem(18);
+					&::before {
+						width: 100%;
+						left: unset;
+					}
+				}
+				&.open {
+					opacity: 1;
+					visibility: visible;
+					transform: translateX(0);
+				}
+			}
+			&__menu-item {
+				font-size: rem(14);
+			}
+			&__burger-btn {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				row-gap: 6px;
+				width: 35px;
+				cursor: pointer;
+				span {
+					width: 35px;
+					height: 3px;
+					border-radius: 3px;
+					background-color: #fff;
+					transition: transform 0.3s ease;
+				}
+				&.active {
+					span {
+						position: absolute;
+						&:nth-child(2) {
+							scale: 0;
+						}
+						&:nth-child(1) {
+							top: calc(50% - rem(1));
+							transform: rotate(-45deg);
+						}
+						&:nth-child(3) {
+							top: calc(50% - rem(1));
+							transform: rotate(45deg);
+						}
+					}
+				}
+			}
 		}
 	}
 </style>

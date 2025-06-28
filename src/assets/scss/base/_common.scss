@@ -1,3 +1,6 @@
+@use './mixins' as *;
+@use './variables' as *;
+
 //==========================================================================================================================================================
 // Общие стили
 html {
@@ -37,7 +40,10 @@ body {
 
 .page-title {
 	padding-top: 120px;
+	font-size: rem(32);
+	font-weight: 600;
 	color: $color-black;
+	text-transform: uppercase;
 }
 
 .section-bg {
