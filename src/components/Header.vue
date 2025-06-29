@@ -56,7 +56,7 @@
 		right: 0;
 		width: 100vw;
 		height: 100px;
-		background-color: rgba(16, 16, 29, 0.9);
+		background-color: $color-bg-muted-1;
 		z-index: 20;
 		// .header__container
 		&__container {
@@ -82,7 +82,7 @@
 		}
 		// .header__logo--blue
 		&__logo--blue {
-			color: $color-main-light-blue;
+			color: $color-blue-2;
 		}
 		// .header__menu
 		&__menu {
@@ -98,7 +98,7 @@
 			position: relative;
 			transition: 0.3s ease-in-out;
 			&:hover {
-				color: $color-main-light-blue;
+				color: $color-blue-2;
 			}
 			&::before {
 				content: '';
@@ -107,7 +107,7 @@
 				bottom: -8px;
 				width: 110%;
 				height: 3px;
-				background-color: $color-main-light-blue;
+				background-color: $color-blue-2;
 				transform: translateX(-5%);
 				opacity: 0;
 				// width: 0%;
@@ -166,7 +166,7 @@
 				max-width: 260px;
 				height: 100vh;
 				padding: 15px;
-				background-color: $color-main-bg-dark;
+				background-color: $color-bg-3;
 				transform: translateX(100%);
 				opacity: 0;
 				visibility: hidden;
@@ -201,7 +201,7 @@
 					width: 35px;
 					height: 3px;
 					border-radius: 3px;
-					background-color: #fff;
+					background-color: $color-white;
 					transition: transform 0.3s ease;
 				}
 				&.active {

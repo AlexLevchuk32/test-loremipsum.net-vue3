@@ -82,7 +82,7 @@
 			font-size: rem(48);
 			line-height: normal;
 			text-transform: uppercase;
-			color: $color-main-black;
+			color: $color-black;
 			margin-bottom: 80px;
 		}
 		// .main-banner__content
@@ -94,7 +94,7 @@
 			font-weight: 700;
 			font-size: rem(20);
 			line-height: 1;
-			color: $color-main-black;
+			color: $color-black;
 			margin-bottom: 10px;
 		}
 		// .main-banner__list
@@ -107,7 +107,7 @@
 		&__list-item {
 			font-size: rem(20);
 			line-height: 1;
-			color: $color-main-black;
+			color: $color-black;
 		}
 		// .main-banner__buttons
 		&__buttons {

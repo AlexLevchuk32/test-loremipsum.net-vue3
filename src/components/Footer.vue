@@ -48,7 +48,7 @@
 	.footer {
 		height: 80px;
 		padding: 30px 0;
-		background-color: $color-main-bg-dark;
+		background-color: $color-bg-3;
 		// .footer__inner
 		&__inner {
 			display: flex;
@@ -85,7 +85,7 @@
 		&__item-devider {
 			width: 1px;
 			height: 18px;
-			background-color: $color-main-light-grey-third;
+			background-color: $color-light-grey-3;
 		}
 		// .footer__item-img
 		&__item-img {
@@ -93,7 +93,7 @@
 		// .footer__item-name
 		&__item-name {
 			font-size: rem(13);
-			color: $color-main-light-grey-third;
+			color: $color-light-grey-3;
 			transition: 0.3s ease-in-out;
 		}
 	}
